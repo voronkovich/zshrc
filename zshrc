@@ -49,3 +49,7 @@ export PATH=$PATH:~/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:
 
 alias vim="stty stop '' -ixoff ; vim"
 alias e="vim"
+alias a2reload="sudo service apache2 reload"
+alias a2ensite="sudo a2ensite"
+alias a2dissite="sudo a2dissite"
+alias a2addsite="sudo ~/bin/a2create_site/a2create_site"
