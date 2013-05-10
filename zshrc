@@ -47,6 +47,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=$PATH:~/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 export EDITOR=vim
+export PROJECTS=~/development
 
 alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
@@ -56,6 +57,6 @@ alias a2ensite="sudo a2ensite"
 alias a2dissite="sudo a2dissite"
 alias a2addsite="sudo ~/bin/a2create_site/a2create_site"
 
-projects() { cd ~/development/$1; }
-_projects() { _files -W ~/development; }
-compdef _projects projects
+project() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
+_project() { _files -W $PROJECTS; }
+compdef _project project
