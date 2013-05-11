@@ -40,7 +40,7 @@ ZSH_THEME="gentoo"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github composer symfony2 extract)
+plugins=(git github composer symfony2 sf2 extract)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -49,9 +49,11 @@ export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/
 export EDITOR=vim
 export PROJECTS=~/development
 
+alias zshrs="source ~/.zshrc"
 alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
+alias se="sudo $EDITOR"
 alias a2reload="sudo service apache2 reload"
 alias a2ensite="sudo a2ensite"
 alias a2dissite="sudo a2dissite"
@@ -60,3 +62,13 @@ alias a2addsite="sudo ~/bin/a2create_site/a2create_site"
 project() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
 _project() { _files -W $PROJECTS; }
 compdef _project project
+
+search () {
+    find . -iname "*$1*"
+}
+searchl () {
+    find . -iname "$1*"
+}
+searchr () {
+    find . -iname "*$1"
+}
