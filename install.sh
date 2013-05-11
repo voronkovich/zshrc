@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIRECTORY="$( cd "$( dirname "$0" )" && pwd )"
+SCRIPT_DIRECTORY=$(dirname $(readlink -f $0))
 
 ln -s $SCRIPT_DIRECTORY/zshrc $HOME/.zshrc
 
-cd ..
-git clone https://github.com/zsh-users/antigen.git antigen
+git clone https://github.com/zsh-users/antigen.git $SCRIPT_DIRECTORY/../antigen
