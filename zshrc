@@ -35,12 +35,6 @@ project() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$
 _project() { _files -W $PROJECTS; }
 compdef _project project
 
-search () {
-    find . -iname "*$1*"
-}
-searchl () {
-    find . -iname "$1*"
-}
-searchr () {
-    find . -iname "*$1"
+s() {
+    find . -iname "*$1*" | grep $1
 }
