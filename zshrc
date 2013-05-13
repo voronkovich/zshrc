@@ -25,16 +25,18 @@ alias zshrs="source ~/.zshrc"
 alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
-alias se="sudo $EDITOR"
+alias s="sudo"
 alias a2reload="sudo service apache2 reload"
 alias a2ensite="sudo a2ensite"
 alias a2dissite="sudo a2dissite"
 alias a2addsite="sudo ~/bin/a2create_site/a2create_site"
+alias ack="ack-grep"
 
-project() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
+p() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
 _project() { _files -W $PROJECTS; }
-compdef _project project
+compdef _project p
 
-s() {
-    find . -iname "*$1*" | grep $1
+f() {
+    # TODO: add replacing * to .*
+    find . -iname "*$1*" | grep -i $1
 }
