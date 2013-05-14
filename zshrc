@@ -38,5 +38,8 @@ compdef _project p
 
 f() {
     # TODO: add replacing * to .*
-    find . -iname "*$1*" | grep -i $1
+    find -iname "*$1*" | grep -i $1
+}
+ff() {
+    find | grep -i "$(echo "$1" | sed 's/./&.*/g')$(test -z $2 || echo "$2.*")"
 }
