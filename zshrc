@@ -3,12 +3,17 @@ source ~/.zsh/antigen/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
+# Bundles {{{
 antigen bundle git
 antigen bundle symfony 
 antigen bundle voronkovich/oh-my-zsh.plugin.sf2
 antigen bundle composer
 antigen bundle extract
+antigen bundle $HOME/development/apache2.plugin.zsh/ --no-local-clone
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
+# }}}
 
 # Load the theme.
 antigen theme gentoo
@@ -16,26 +21,27 @@ antigen theme gentoo
 # Tell antigen that you're done.
 antigen apply
 
-# Customize to your needs...
+# Exporting variables {{{
 export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 export EDITOR=vim
 export PROJECTS=~/development
+# }}}
 
+# Aliases {{{
 alias zshrs="source ~/.zshrc"
 alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
-alias s="sudo"
-alias a2reload="sudo service apache2 reload"
-alias a2ensite="sudo a2ensite"
-alias a2dissite="sudo a2dissite"
-alias a2addsite="sudo ~/bin/a2create_site/a2create_site"
 alias ack="ack-grep"
+# }}}
 
+# Projects {{{
 p() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
 _project() { _files -W $PROJECTS; }
 compdef _project p
+# }}}
 
+# Fuzzy search {{{
 f() {
     # TODO: add replacing * to .*
     find -iname "*$1*" | grep -i $1
@@ -43,3 +49,19 @@ f() {
 ff() {
     find | grep -i "$(echo "$1" | sed 's/./&.*/g')$(test -z $2 || echo "$2.*")"
 }
+# }}}
+
+# Automatically run ls on blank line for faster navigation {{{
+auto-ls () {
+    if [[ $#BUFFER -eq 0 ]]; then
+        echo ""
+        ls
+        zle redisplay
+    else
+        zle .$WIDGET
+    fi
+}
+zle -N accept-line auto-ls
+zle -N other-widget auto-ls
+# }}}
+# vim: foldmethod=marker
