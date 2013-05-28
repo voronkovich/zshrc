@@ -6,10 +6,11 @@ antigen use oh-my-zsh
 # Bundles {{{
 antigen bundle git
 antigen bundle symfony 
-antigen bundle voronkovich/oh-my-zsh.plugin.sf2
+antigen bundle voronkovich/sf2.plugin.zsh
+antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle composer
 antigen bundle extract
-antigen bundle $HOME/development/apache2.plugin.zsh/ --no-local-clone
+# antigen bundle $HOME/development/apache2.plugin.zsh/ --no-local-clone
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
@@ -25,6 +26,7 @@ antigen apply
 export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 export EDITOR=vim
 export PROJECTS=~/development
+export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
 # }}}
 
 # Aliases {{{
