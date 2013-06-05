@@ -35,6 +35,7 @@ alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
 alias ack="ack-grep"
+alias cf="chef-solo"
 # }}}
 
 # Projects {{{
@@ -66,4 +67,8 @@ auto-ls () {
 zle -N accept-line auto-ls
 zle -N other-widget auto-ls
 # }}}
+
+if [[ -r $HOME/.zsh_custom ]]; then
+    source $HOME/.zsh_custom
+fi
 # vim: foldmethod=marker
