@@ -9,10 +9,11 @@ antigen bundle symfony
 antigen bundle web-search
 antigen bundle voronkovich/sf2.plugin.zsh
 antigen bundle voronkovich/apache2.plugin.zsh
+antigen bundle voronkovich/mysql.plugin.zsh
 antigen bundle composer
 antigen bundle extract
 antigen bundle tarruda/zsh-fuzzy-match
-# antigen bundle $HOME/development/apache2.plugin.zsh/ --no-local-clone
+#antigen bundle $HOME/development/plugin --no-local-clone
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zaw
 antigen bundle zsh-users/zsh-completions
@@ -38,7 +39,6 @@ alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
 alias ack="ack-grep"
-alias my="mysql -u root -p"
 # }}}
 
 # Projects {{{
