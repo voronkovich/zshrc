@@ -6,7 +6,7 @@ antigen use oh-my-zsh
 # Bundles {{{
 antigen bundle git
 antigen bundle symfony 
-antigen bundle web-search
+#antigen bundle web-search
 antigen bundle voronkovich/sf2.plugin.zsh
 #antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle voronkovich/mysql.plugin.zsh
