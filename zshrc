@@ -40,6 +40,8 @@ alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
 alias ack="ack-grep"
+alias yad="yandex-disk"
+alias yadpub="yandex-disk publish"
 # }}}
 
 # Projects {{{
