@@ -6,6 +6,7 @@ antigen use oh-my-zsh
 # Bundles {{{
 antigen bundle git
 antigen bundle symfony 
+antigen bundle vagrant 
 #antigen bundle web-search
 antigen bundle voronkovich/sf2.plugin.zsh
 #antigen bundle voronkovich/apache2.plugin.zsh
@@ -42,6 +43,7 @@ alias e="$EDITOR"
 alias ack="ack-grep"
 alias yad="yandex-disk"
 alias yadpub="yandex-disk publish"
+alias v="vagrant"
 # }}}
 
 # Projects {{{
