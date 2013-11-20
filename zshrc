@@ -30,7 +30,7 @@ antigen apply
 # Exporting variables {{{
 export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 export EDITOR=vim
-export PROJECTS=~/development
+export PROJECTS=~/workspace
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
 # }}}
 
@@ -47,6 +47,7 @@ alias yad="yandex-disk"
 alias yadpub="yandex-disk publish"
 alias v="vagrant"
 alias fzf='~/bin/fzfrepo/fzf'
+alias gaa='git add .'
 # }}}
 
 # Projects {{{
