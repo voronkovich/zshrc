@@ -39,11 +39,14 @@ alias zshrs="source ~/.zshrc"
 alias zshrc="e ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
+alias ec="eclim -command"
+alias ecpc="eclim -command project_create -f"
+alias ecpu="eclim -command project_update -p"
 alias ack="ack-grep"
 alias yad="yandex-disk"
 alias yadpub="yandex-disk publish"
 alias v="vagrant"
-alias fzf='ruby --disable-gems ~/bin/fzf'
+alias fzf='~/bin/fzfrepo/fzf'
 # }}}
 
 # Projects {{{
@@ -73,7 +76,6 @@ fi
 # Fuzzy shell widget {{{
 fzf-install() {
     git clone https://github.com/junegunn/fzf.git ~/bin/fzfrepo
-    ~/bin/fzfrepo/install
 }
 # CTRL-T - Paste the selected file(s) path into the command line
 fzf-file-widget() {
