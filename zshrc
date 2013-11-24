@@ -37,7 +37,7 @@ export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
 # Aliases {{{
 alias zshrs="source ~/.zshrc"
 alias zshrc="e ~/.zshrc"
-alias zshrc-update="git --work-tree=/home/oleg/.zsh/zshrc pull"
+alias zshrc-update="git --work-tree ~/.zsh/zshrc pull"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
 alias ec="eclim -command"
