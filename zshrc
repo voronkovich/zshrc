@@ -9,12 +9,12 @@ antigen bundle symfony
 antigen bundle vagrant 
 #antigen bundle web-search
 antigen bundle voronkovich/sf2.plugin.zsh
-#antigen bundle voronkovich/apache2.plugin.zsh
+antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle voronkovich/mysql.plugin.zsh
 antigen bundle composer
 antigen bundle extract
 #antigen bundle $HOME/development/plugin --no-local-clone
-antigen bundle /home/oleg/development/apache2.plugin.zsh/ --no-local-clone
+#antigen bundle /home/oleg/development/apache2.plugin.zsh/ --no-local-clone
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zaw
 antigen bundle zsh-users/zsh-completions
