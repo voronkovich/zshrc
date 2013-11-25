@@ -58,6 +58,15 @@ _project() { _files -W $PROJECTS; }
 compdef _project p
 # }}}
 
+# Bookmarks {{{
+fuzzygo-widget() {
+    go $(cut -d '|' -f 2 ~/.bookmarks | fzf)
+    zle reset-prompt
+}
+zle     -N    fuzzygo-widget
+bindkey '^[g' fuzzygo-widget
+# }}}
+
 # Automatically run ls on blank line for faster navigation {{{
 auto-ls () {
     if [[ $#BUFFER -eq 0 ]]; then
