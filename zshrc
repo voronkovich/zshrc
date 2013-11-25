@@ -18,6 +18,7 @@ antigen bundle extract
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zaw
 antigen bundle zsh-users/zsh-completions
+antigen bundle jocelynmallon/zshmarks
 fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
 # }}}
 
