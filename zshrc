@@ -52,10 +52,18 @@ alias fzf='~/bin/fzfrepo/fzf'
 alias gaa='git add .'
 # }}}
 
+
 # Projects {{{
 p() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
 _project() { _files -W $PROJECTS; }
 compdef _project p
+project-widget() {
+    local dir=$(find $PROJECTS -maxdepth 1 -type d ! -name '.*' | xargs basename -a | tail -n +2 | fzf)
+    cd $PROJECTS/$dir
+    zle reset-prompt
+}
+zle     -N    project-widget
+bindkey '^[;' project-widget
 # }}}
 
 # Bookmarks {{{
