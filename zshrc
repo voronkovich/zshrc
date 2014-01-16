@@ -5,12 +5,14 @@ antigen use oh-my-zsh
 
 # Bundles {{{
 antigen bundle git
+antigen bundle github
 antigen bundle symfony 
 antigen bundle vagrant 
 #antigen bundle web-search
 antigen bundle voronkovich/sf2.plugin.zsh
 antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle voronkovich/mysql.plugin.zsh
+antigen bundle voronkovich/gitignore.plugin.zsh
 antigen bundle composer
 antigen bundle extract
 #antigen bundle $HOME/development/plugin --no-local-clone
