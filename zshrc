@@ -44,6 +44,7 @@ alias e="$EDITOR"
 alias ec="eclim -command"
 alias ecpc="eclim -command project_create -f"
 alias ecpu="eclim -command project_update -p"
+alias eclim-start="tmux new-session -s eclim eclimd"
 alias ack="ack-grep"
 alias yad="yandex-disk"
 alias yadpub="yandex-disk publish"
@@ -52,13 +53,12 @@ alias fzf='~/bin/fzfrepo/fzf'
 alias gaa='git add .'
 # }}}
 
-
 # Projects {{{
 p() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
 _project() { _files -W $PROJECTS; }
 compdef _project p
 project-widget() {
-    local dir=$(find $PROJECTS -maxdepth 1 -type d ! -name '.*' | xargs basename -a | tail -n +2 | fzf)
+    local dir=$(find $PROJECTS -maxdepth 1 -type d -o -type l ! -name '.*' | xargs basename -a | tail -n +2 | fzf)
     cd $PROJECTS/$dir
     zle reset-prompt
 }
