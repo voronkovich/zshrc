@@ -9,6 +9,7 @@ antigen bundle github
 antigen bundle symfony 
 antigen bundle vagrant 
 #antigen bundle web-search
+antigen bundle sindresorhus/pure
 antigen bundle voronkovich/sf2.plugin.zsh
 antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle voronkovich/mysql.plugin.zsh
@@ -25,10 +26,12 @@ fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLA
 # }}}
 
 # Load the theme.
-antigen theme gentoo
+#antigen theme dst
 
 # Tell antigen that you're done.
 antigen apply
+
+ZSH_THEME="pure"
 
 # Exporting variables {{{
 export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
@@ -63,6 +66,7 @@ project-widget() {
     local dir=$(find $PROJECTS -maxdepth 1 -type d -o -type l ! -name '.*' | xargs basename -a | tail -n +2 | fzf)
     cd $PROJECTS/$dir
     zle reset-prompt
+    zle redisplay
 }
 zle     -N    project-widget
 bindkey '^[;' project-widget
@@ -80,8 +84,9 @@ bindkey '^[g' fuzzygo-widget
 # Automatically run ls on blank line for faster navigation {{{
 auto-ls () {
     if [[ $#BUFFER -eq 0 ]]; then
-        echo ""
+        echo 
         ls
+        echo
         zle redisplay
     else
         zle .$WIDGET
