@@ -88,9 +88,9 @@ bindkey '^[g' fuzzygo-widget
 # Automatically run ls on blank line for faster navigation {{{
 auto-ls () {
     if [[ $#BUFFER -eq 0 ]]; then
-        echo 
-        ls
         echo
+        ls
+        prompt_pure_precmd; # Fix pure theme
         zle redisplay
     else
         zle .$WIDGET
