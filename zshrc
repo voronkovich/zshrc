@@ -8,14 +8,16 @@ antigen bundle git
 antigen bundle github
 antigen bundle symfony 
 antigen bundle vagrant 
+antigen bundle composer
+antigen bundle extract
+#antigen bundle hchbaw/auto-fu.zsh
 #antigen bundle web-search
+#antigen bundle tarruda/zsh-autosuggestions
 antigen bundle sindresorhus/pure
 antigen bundle voronkovich/sf2.plugin.zsh
 antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle voronkovich/mysql.plugin.zsh
 antigen bundle voronkovich/gitignore.plugin.zsh
-antigen bundle composer
-antigen bundle extract
 #antigen bundle $HOME/development/plugin --no-local-clone
 #antigen bundle /home/oleg/development/apache2.plugin.zsh/ --no-local-clone
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -65,6 +67,7 @@ compdef _project p
 project-widget() {
     local dir=$(find $PROJECTS -maxdepth 1 -type d -o -type l ! -name '.*' | xargs basename -a | tail -n +2 | fzf)
     cd $PROJECTS/$dir
+    echo; prompt_pure_precmd; # Fix pure theme
     zle reset-prompt
     zle redisplay
 }
@@ -75,6 +78,7 @@ bindkey '^[;' project-widget
 # Bookmarks {{{
 fuzzygo-widget() {
     go $(cut -d '|' -f 2 ~/.bookmarks | fzf)
+    echo; prompt_pure_precmd; # Fix pure theme
     zle reset-prompt
 }
 zle     -N    fuzzygo-widget
@@ -138,5 +142,11 @@ fzf-history-widget() {
 zle     -N   fzf-history-widget
 bindkey '^R' fzf-history-widget
 # }}}
+
+# auto-fu {{{
+# zle-line-init () {auto-fu-init;}; zle -N zle-line-init
+# zstyle ':completion:*' completer _oldlist _complete
+# zle -N zle-keymap-select auto-fu-zle-keymap-select
+#}}}
 
 # vim: foldmethod=marker
