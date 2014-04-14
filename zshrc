@@ -18,7 +18,7 @@ antigen bundle voronkovich/sf2.plugin.zsh
 antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle voronkovich/mysql.plugin.zsh
 antigen bundle voronkovich/gitignore.plugin.zsh
-#antigen bundle $HOME/development/plugin --no-local-clone
+# antigen bundle /home/oleg/workspace/zsh-autosudo --no-local-clone
 #antigen bundle /home/oleg/development/apache2.plugin.zsh/ --no-local-clone
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zaw
@@ -38,6 +38,7 @@ ZSH_THEME="pure"
 # Exporting variables {{{
 export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 export EDITOR=vim
+export PAGER=most
 export PROJECTS=~/workspace
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
 # }}}
@@ -99,6 +100,18 @@ auto-ls () {
 zle -N accept-line auto-ls
 zle -N other-widget auto-ls
 # }}}
+
+auto-sudo() {
+    buffer=(${=BUFFER})
+    c=$buffer[1]
+    a=(apt-get service)
+    if $c in $a; then
+        BUFFER="sudo $BUFFER"
+    fi
+    
+    zle .$WIDGET
+}
+# zle -N accept-line auto-sudo
 
 if [[ -r $HOME/.zsh_custom ]]; then
     source $HOME/.zsh_custom
