@@ -121,39 +121,46 @@ fi
 fzf-install() {
     git clone https://github.com/junegunn/fzf.git ~/bin/fzfrepo
 }
+
 # CTRL-T - Paste the selected file(s) path into the command line
 fzf-file-widget() {
-      local FILES
-        local IFS="
-        "
-          FILES=($(
-              find * -path '*/\.*' -prune \
-                  -o -type f -print \
-                      -o -type l -print 2> /dev/null | fzf -m))
-            unset IFS
-              FILES=$FILES:q
-                LBUFFER="${LBUFFER%% #} $FILES"
-                  zle redisplay
+    local FILES
+    local IFS=""
+    FILES=($(
+    find * -path '*/\.*' -prune \
+        -o -type f -print \
+        -o -type l -print 2> /dev/null | fzf -m))
+    unset IFS
+    FILES=$FILES:q
+    LBUFFER="${LBUFFER%% #} $FILES"
+    zle redisplay
 }
 zle     -N   fzf-file-widget
 bindkey '^T' fzf-file-widget
 
-# ALT-C - cd into the selected directory
+# CTRL-Q - cd into the selected directory
 fzf-cd-widget() {
       cd "${$(find * -path '*/\.*' -prune \
-                -o -type d -print 2> /dev/null | fzf):-.}"
-                  zle reset-prompt
+          -o -type d -print 2> /dev/null | fzf):-.}"
+      echo; prompt_pure_precmd; # Fix pure theme
+      zle redisplay
 }
-zle     -N    fzf-cd-widget
-bindkey '\ec' fzf-cd-widget
+zle     -N   fzf-cd-widget
+bindkey '^Q' fzf-cd-widget
 
 # CTRL-R - Paste the selected command from history into the command line
 fzf-history-widget() {
       LBUFFER=$(history | fzf +s | sed "s/ *[0-9]* *//")
-        zle redisplay
+      zle redisplay
 }
 zle     -N   fzf-history-widget
 bindkey '^R' fzf-history-widget
+
+fzf-cd-history-widget() {
+    cd $(dirs -pl | fzf) 
+}
+zle     -N   fzf-cd-history-widget
+bindkey '\ec' fzf-cd-history-widget
 # }}}
 
 # auto-fu {{{
