@@ -59,6 +59,7 @@ alias yadpub="yandex-disk publish"
 alias v="vagrant"
 alias fzf='~/bin/fzfrepo/fzf'
 alias gaa='git add .'
+alias root='sudo -s'
 # }}}
 
 # Projects {{{
