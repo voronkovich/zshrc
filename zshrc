@@ -10,16 +10,11 @@ antigen bundle symfony
 antigen bundle vagrant 
 antigen bundle composer
 antigen bundle extract
-#antigen bundle hchbaw/auto-fu.zsh
-#antigen bundle web-search
-#antigen bundle tarruda/zsh-autosuggestions
 antigen bundle sindresorhus/pure
 antigen bundle voronkovich/sf2.plugin.zsh
 antigen bundle voronkovich/apache2.plugin.zsh
 antigen bundle voronkovich/mysql.plugin.zsh
 antigen bundle voronkovich/gitignore.plugin.zsh
-# antigen bundle /home/oleg/workspace/zsh-autosudo --no-local-clone
-#antigen bundle /home/oleg/development/apache2.plugin.zsh/ --no-local-clone
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zaw
 antigen bundle zsh-users/zsh-completions
@@ -41,6 +36,10 @@ export EDITOR=vim
 export PAGER=most
 export PROJECTS=~/workspace
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
+# }}}
+
+# History settings {{{
+setopt hist_ignore_all_dups
 # }}}
 
 # Aliases {{{
@@ -102,18 +101,6 @@ zle -N accept-line auto-ls
 zle -N other-widget auto-ls
 # }}}
 
-auto-sudo() {
-    buffer=(${=BUFFER})
-    c=$buffer[1]
-    a=(apt-get service)
-    if $c in $a; then
-        BUFFER="sudo $BUFFER"
-    fi
-    
-    zle .$WIDGET
-}
-# zle -N accept-line auto-sudo
-
 if [[ -r $HOME/.zsh_custom ]]; then
     source $HOME/.zsh_custom
 fi
@@ -163,11 +150,5 @@ fzf-cd-history-widget() {
 zle     -N   fzf-cd-history-widget
 bindkey '\ec' fzf-cd-history-widget
 # }}}
-
-# auto-fu {{{
-# zle-line-init () {auto-fu-init;}; zle -N zle-line-init
-# zstyle ':completion:*' completer _oldlist _complete
-# zle -N zle-keymap-select auto-fu-zle-keymap-select
-#}}}
 
 # vim: foldmethod=marker
