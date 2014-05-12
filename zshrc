@@ -59,6 +59,13 @@ alias v="vagrant"
 alias fzf='~/bin/fzfrepo/fzf'
 alias gaa='git add .'
 alias root='sudo -s'
+alias j='jump'
+# }}}
+
+# Functions {{{
+genpass() {
+    pwgen -0A ${1:-12} 1
+}
 # }}}
 
 # Projects {{{
@@ -78,7 +85,7 @@ bindkey '^[;' project-widget
 
 # Bookmarks {{{
 fuzzygo-widget() {
-    go $(cut -d '|' -f 2 ~/.bookmarks | fzf)
+    jump $(cut -d '|' -f 2 ~/.bookmarks | fzf)
     echo; prompt_pure_precmd; # Fix pure theme
     zle reset-prompt
 }
