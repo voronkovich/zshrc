@@ -1,4 +1,4 @@
-source ~/.zsh/antigen/antigen.zsh
+source $(dirname $(readlink -f $0))/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
