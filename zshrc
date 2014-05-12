@@ -62,6 +62,14 @@ alias root='sudo -s'
 alias j='jump'
 # }}}
 
+# {{{ Hashes
+hash -d desk=~/Desktop
+hash -d docs=~/Documents
+hash -d downloads=~/Downloads
+hash -d projects=$PROJECTS
+hash -d yad=~/Yandex.Disk
+# }}}
+
 # Functions {{{
 genpass() {
     pwgen -0A ${1:-12} 1
