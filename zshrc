@@ -60,6 +60,9 @@ alias fzf='~/bin/fzfrepo/fzf'
 alias gaa='git add .'
 alias root='sudo -s'
 alias j='jump'
+if $(which htop &>/dev/null); then
+    alias top=htop
+fi
 # }}}
 
 # {{{ Hashes
