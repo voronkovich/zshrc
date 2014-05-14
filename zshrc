@@ -71,6 +71,7 @@ hash -d docs=~/Documents
 hash -d downloads=~/Downloads
 hash -d projects=$PROJECTS
 hash -d yad=~/Yandex.Disk
+hash -d logs=/var/log
 # }}}
 
 # Functions {{{
