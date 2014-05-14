@@ -1,4 +1,4 @@
-source ~/.zsh/zshrc/antigen/antigen.zsh
+source ~/.zsh/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
