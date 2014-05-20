@@ -3,22 +3,28 @@ source ~/.zsh/antigen/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
+Bundle() {
+    antigen bundle $*
+}
+
 # Bundles {{{
-antigen bundle git
-antigen bundle github
-antigen bundle symfony 
-antigen bundle vagrant 
-antigen bundle composer
-antigen bundle extract
-antigen bundle sindresorhus/pure
-antigen bundle voronkovich/sf2.plugin.zsh
-antigen bundle voronkovich/apache2.plugin.zsh
-antigen bundle voronkovich/mysql.plugin.zsh
-antigen bundle voronkovich/gitignore.plugin.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zaw
-antigen bundle zsh-users/zsh-completions
-antigen bundle jocelynmallon/zshmarks
+Bundle git
+Bundle github
+Bundle symfony 
+Bundle vagrant 
+Bundle composer
+Bundle extract
+Bundle zsh_reload
+Bundle sindresorhus/pure
+Bundle voronkovich/sf2.plugin.zsh
+Bundle voronkovich/apache2.plugin.zsh
+Bundle voronkovich/mysql.plugin.zsh
+Bundle voronkovich/gitignore.plugin.zsh
+Bundle zsh-users/zsh-syntax-highlighting
+Bundle zsh-users/zaw
+Bundle zsh-users/zsh-completions
+Bundle jocelynmallon/zshmarks
+Bundle /home/oleg/workspace/get-jquery.plugin.zsh/ --no-local-clone
 fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
 # }}}
 
@@ -43,7 +49,6 @@ setopt hist_ignore_all_dups
 # }}}
 
 # Aliases {{{
-alias zshrs="source ~/.zshrc"
 alias zshrc="e ~/.zshrc"
 alias zshrc-update="git --work-tree ~/.zsh/zshrc pull"
 alias vim="stty stop '' -ixoff ; vim"
