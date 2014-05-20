@@ -49,8 +49,7 @@ setopt hist_ignore_all_dups
 # }}}
 
 # Aliases {{{
-alias zshrc="e ~/.zshrc"
-alias zshrc-update="git --work-tree ~/.zsh/zshrc pull"
+alias zshrc-update="git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; antigen update; src"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
 alias ec="eclim -command"
