@@ -1,3 +1,4 @@
+# Bootstrap {{{
 source ~/.zsh/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
@@ -6,6 +7,7 @@ antigen use oh-my-zsh
 Bundle() {
     antigen bundle $*
 }
+# }}}
 
 # Bundles {{{
 Bundle git
@@ -20,11 +22,11 @@ Bundle voronkovich/sf2.plugin.zsh
 Bundle voronkovich/apache2.plugin.zsh
 Bundle voronkovich/mysql.plugin.zsh
 Bundle voronkovich/gitignore.plugin.zsh
+Bundle voronkovich/get-jquery.plugin.zsh
 Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zaw
 Bundle zsh-users/zsh-completions
 Bundle jocelynmallon/zshmarks
-Bundle /home/oleg/workspace/get-jquery.plugin.zsh/ --no-local-clone
 fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
 # }}}
 
@@ -49,6 +51,7 @@ setopt hist_ignore_all_dups
 # }}}
 
 # Aliases {{{
+alias zshrc="$EDITOR ~/.zshrc"
 alias zshrc-update="git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; antigen update; src"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
