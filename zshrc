@@ -67,6 +67,7 @@ alias fzf='~/bin/fzfrepo/fzf'
 alias gaa='git add .'
 alias root='sudo -s'
 alias j='jump'
+alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
 if $(which htop &>/dev/null); then
     alias top=htop
 fi
@@ -79,6 +80,7 @@ hash -d downloads=~/Downloads
 hash -d projects=$PROJECTS
 hash -d yad=~/Yandex.Disk
 hash -d logs=/var/log
+hash -d config=~/.config
 # }}}
 
 # Functions {{{
