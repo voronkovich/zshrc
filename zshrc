@@ -17,6 +17,8 @@ Bundle vagrant
 Bundle composer
 Bundle extract
 Bundle zsh_reload
+Bundle npm
+Bundle bower
 Bundle sindresorhus/pure
 Bundle voronkovich/sf2.plugin.zsh
 Bundle voronkovich/apache2.plugin.zsh
@@ -68,6 +70,7 @@ alias gaa='git add .'
 alias root='sudo -s'
 alias j='jump'
 alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
+alias vb='virtualbox'
 if $(which htop &>/dev/null); then
     alias top=htop
 fi
