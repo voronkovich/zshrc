@@ -12,7 +12,7 @@ Bundle() {
 # Bundles {{{
 Bundle git
 Bundle github
-Bundle symfony 
+Bundle symfony2
 Bundle vagrant 
 Bundle composer
 Bundle extract
@@ -89,6 +89,22 @@ hash -d config=~/.config
 # Functions {{{
 genpass() {
     pwgen -0A ${1:-12} 1
+}
+upsearch () {
+    slashes=${PWD//[^\/]/}
+    directory="$PWD"
+    for (( n=${#slashes}; n>0; --n ))
+    do
+        test -e "$directory/$1" && echo "$directory/$1" && return 
+        directory="$directory/.."
+    done
+}
+_symfony_console () {
+    echo $(upsearch app/console)
+}
+unalias sf
+sf() {
+    $(_symfony_console) $* 
 }
 # }}}
 
