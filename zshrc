@@ -20,16 +20,14 @@ Bundle zsh_reload
 Bundle npm
 Bundle bower
 Bundle sindresorhus/pure
-Bundle voronkovich/sf2.plugin.zsh
 Bundle voronkovich/apache2.plugin.zsh
 Bundle voronkovich/mysql.plugin.zsh
 Bundle voronkovich/gitignore.plugin.zsh
 Bundle voronkovich/get-jquery.plugin.zsh
 Bundle zsh-users/zsh-syntax-highlighting
-Bundle zsh-users/zaw
-Bundle zsh-users/zsh-completions
+Bundle zsh-users/zsh-completions src
 Bundle jocelynmallon/zshmarks
-fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
+Bundle supercrabtree/k
 # }}}
 
 # Load the theme.
@@ -57,6 +55,7 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias zshrc-update="git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; antigen update; src"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
+alias ide="tmux new-session $EDITOR \; split-window \; resize-pane -D 4"
 alias ec="eclim -command"
 alias ecpc="eclim -command project_create -f"
 alias ecpu="eclim -command project_update -p"
@@ -106,6 +105,8 @@ unalias sf
 sf() {
     $(_symfony_console) $* 
 }
+sfc() {
+}
 # }}}
 
 # Projects {{{
@@ -137,7 +138,7 @@ bindkey '^[g' fuzzygo-widget
 auto-ls () {
     if [[ $#BUFFER -eq 0 ]]; then
         echo
-        ls
+        k
         prompt_pure_precmd; # Fix pure theme
         zle redisplay
     else
