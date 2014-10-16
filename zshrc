@@ -67,6 +67,7 @@ alias yadpub="yandex-disk publish"
 alias v="vagrant"
 alias fzf='~/bin/fzfrepo/fzf'
 alias gaa='git add .'
+alias gac='git add . && git commit'
 alias root='sudo -s'
 alias j='jump'
 alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
