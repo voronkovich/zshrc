@@ -28,6 +28,7 @@ Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zsh-completions src
 Bundle jocelynmallon/zshmarks
 Bundle supercrabtree/k
+Bundle unixorn/autoupdate-antigen.zshplugin
 # }}}
 
 # Load the theme.
@@ -55,12 +56,12 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias zshrc-update="git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; antigen update; src"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
-alias ide="tmux new-session $EDITOR \; split-window \; resize-pane -D 4"
+alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
 alias ec="eclim -command"
 alias ecpc="eclim -command project_create -f"
 alias ecpu="eclim -command project_update -p"
 alias eclim-start="tmux new-session -s eclim eclimd"
-alias ack="ack-grep"
+alias ack="ag"
 alias yad="yandex-disk"
 alias yadpub="yandex-disk publish"
 alias v="vagrant"
