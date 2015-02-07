@@ -16,7 +16,6 @@ Bundle symfony2
 Bundle vagrant 
 Bundle composer
 Bundle extract
-Bundle zsh_reload
 Bundle npm
 Bundle bower
 Bundle sindresorhus/pure
@@ -53,7 +52,9 @@ setopt hist_ignore_all_dups
 
 # Aliases {{{
 alias zshrc="$EDITOR ~/.zshrc"
-alias zshrc-update="git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; antigen update; src"
+alias zshrc-pull="git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; antigen update; zshrc-reload"
+alias zshrc-push="git --git-dir ~/.zsh/.git --work-tree ~/.zsh add . && git --git-dir ~/.zsh/.git --work-tree ~/.zsh commit && git --git-dir ~/.zsh/.git --work-tree ~/.zsh push"
+alias zshrc-reload="source ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
 alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
