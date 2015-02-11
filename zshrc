@@ -52,7 +52,7 @@ setopt hist_ignore_all_dups
 
 # Aliases {{{
 alias zshrc="$EDITOR ~/.zshrc"
-alias zshrc-pull="git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; antigen update; zshrc-reload"
+alias zshrc-pull="echo '**** Pulling .zshrc'; git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; echo; antigen update; zshrc-reload"
 alias zshrc-push="git --git-dir ~/.zsh/.git --work-tree ~/.zsh add . && git --git-dir ~/.zsh/.git --work-tree ~/.zsh commit && git --git-dir ~/.zsh/.git --work-tree ~/.zsh push"
 alias zshrc-reload="source ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
