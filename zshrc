@@ -40,6 +40,7 @@ antigen apply
 ZSH_THEME="pure"
 
 # Exporting variables {{{
+export LC_ALL=en_US.UTF-8
 export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 export EDITOR=vim
 export PAGER=most
