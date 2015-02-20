@@ -27,6 +27,7 @@ Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zsh-completions src
 Bundle jocelynmallon/zshmarks
 Bundle supercrabtree/k
+Bundle willghatch/zsh-snippets
 Bundle unixorn/autoupdate-antigen.zshplugin
 # }}}
 
