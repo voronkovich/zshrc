@@ -67,9 +67,8 @@ alias ack="ag"
 alias yad="yandex-disk"
 alias yadpub="yandex-disk publish"
 alias v="vagrant"
-alias fzf='~/bin/fzfrepo/fzf'
+alias fzf='~/bin/fzf/fzf'
 alias gaa='git add .'
-alias gac='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit'
 alias root='sudo -s'
 alias j='jump'
 alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
@@ -90,6 +89,15 @@ hash -d config=~/.config
 # }}}
 
 # Functions {{{
+gac() {
+    git add -A;
+    git ls-files --deleted -z | xargs -r0 git rm;
+    if [[ $# -gt 0 ]]; then
+        git commit -m "$*"
+    else
+        git commit
+    fi
+}
 genpass() {
     pwgen -0A ${1:-12} 1
 }
