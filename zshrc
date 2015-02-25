@@ -20,7 +20,8 @@ Bundle npm
 Bundle bower
 Bundle sindresorhus/pure
 Bundle voronkovich/apache2.plugin.zsh
-Bundle voronkovich/mysql.plugin.zsh
+# Bundle voronkovich/mysql.plugin.zsh
+Bundle /home/oleg/workspace/mysql.plugin.zsh --no-local-clone
 Bundle voronkovich/gitignore.plugin.zsh
 Bundle voronkovich/get-jquery.plugin.zsh
 Bundle zsh-users/zsh-syntax-highlighting
@@ -110,15 +111,6 @@ upsearch () {
         test -e "$directory/$1" && echo "$directory/$1" && return 
         directory="$directory/.."
     done
-}
-_symfony_console () {
-    echo $(upsearch app/console)
-}
-unalias sf
-sf() {
-    $(_symfony_console) $* 
-}
-sfc() {
 }
 # }}}
 
