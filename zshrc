@@ -20,9 +20,10 @@ Bundle npm
 Bundle bower
 Bundle sindresorhus/pure
 Bundle voronkovich/apache2.plugin.zsh
-# Bundle voronkovich/mysql.plugin.zsh
-Bundle /home/oleg/workspace/mysql.plugin.zsh --no-local-clone
+Bundle voronkovich/mysql.plugin.zsh
+# Bundle /home/oleg/workspace/mysql.plugin.zsh --no-local-clone
 Bundle voronkovich/gitignore.plugin.zsh
+# Bundle /home/oleg/workspace/gitignore.plugin.zsh --no-local-clone
 Bundle voronkovich/get-jquery.plugin.zsh
 Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zsh-completions src
@@ -75,6 +76,7 @@ alias root='sudo -s'
 alias j='jump'
 alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
 alias vb='virtualbox'
+alias sf='app/console'
 if $(which htop &>/dev/null); then
     alias top=htop
 fi
