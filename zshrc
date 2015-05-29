@@ -18,6 +18,7 @@ Bundle composer
 Bundle extract
 Bundle npm
 Bundle bower
+Bundle mafredri/zsh-async
 Bundle sindresorhus/pure
 Bundle voronkovich/apache2.plugin.zsh
 Bundle voronkovich/mysql.plugin.zsh
