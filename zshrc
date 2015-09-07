@@ -13,13 +13,15 @@ Bundle() {
 Bundle git
 Bundle github
 Bundle symfony2
-Bundle vagrant 
+Bundle vagrant
 Bundle composer
 Bundle extract
 Bundle npm
 Bundle bower
 Bundle mafredri/zsh-async
 Bundle sindresorhus/pure
+# Bundle voronkovich/project.plugin.zsh
+Bundle /home/oleg/workspace/project.plugin.zsh --no-local-clone
 Bundle voronkovich/apache2.plugin.zsh
 Bundle voronkovich/mysql.plugin.zsh
 # Bundle /home/oleg/workspace/mysql.plugin.zsh --no-local-clone
@@ -28,14 +30,11 @@ Bundle voronkovich/gitignore.plugin.zsh
 Bundle voronkovich/get-jquery.plugin.zsh
 Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zsh-completions src
-Bundle jocelynmallon/zshmarks
 Bundle supercrabtree/k
 Bundle willghatch/zsh-snippets
+Bundle uvaes/fzf-marks
 Bundle unixorn/autoupdate-antigen.zshplugin
 # }}}
-
-# Load the theme.
-#antigen theme dst
 
 # Tell antigen that you're done.
 antigen apply
@@ -49,6 +48,7 @@ export EDITOR=vim
 export PAGER=most
 export PROJECTS=~/workspace
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
+export ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS="$HOME/.gitignore:$ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS"
 # }}}
 
 # History settings {{{
@@ -63,6 +63,7 @@ alias zshrc-reload="source ~/.zshrc"
 alias vim="stty stop '' -ixoff ; vim"
 alias e="$EDITOR"
 alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
+alias sfide="tmux -2 new-session -s symfony -n terminal \; new-window -n code $EDITOR \; split-window 'php app/console -s' \; resize-pane -D 4"
 alias ec="eclim -command"
 alias ecpc="eclim -command project_create -f"
 alias ecpu="eclim -command project_update -p"
@@ -78,6 +79,7 @@ alias j='jump'
 alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
 alias vb='virtualbox'
 alias sf='app/console'
+alias vspec=~/.vim/bundle/vim-vspec/bin/vspec
 if $(which htop &>/dev/null); then
     alias top=htop
 fi
@@ -86,8 +88,7 @@ fi
 # {{{ Hashes
 hash -d desk=~/Desktop
 hash -d docs=~/Documents
-hash -d downloads=~/Downloads
-hash -d projects=$PROJECTS
+hash -d down=~/Downloads
 hash -d yad=~/Yandex.Disk
 hash -d logs=/var/log
 hash -d config=~/.config
@@ -111,35 +112,10 @@ upsearch () {
     directory="$PWD"
     for (( n=${#slashes}; n>0; --n ))
     do
-        test -e "$directory/$1" && echo "$directory/$1" && return 
+        test -e "$directory/$1" && echo "$directory/$1" && return
         directory="$directory/.."
     done
 }
-# }}}
-
-# Projects {{{
-p() { if [[ -f $PROJECTS/$1 ]] then cd $PROJECTS/$1; else take $PROJECTS/$1; fi; }
-_project() { _files -W $PROJECTS; }
-compdef _project p
-project-widget() {
-    local dir=$(find $PROJECTS -maxdepth 1 -type d -o -type l ! -name '.*' | xargs basename -a | tail -n +2 | fzf)
-    cd $PROJECTS/$dir
-    echo; prompt_pure_precmd; # Fix pure theme
-    zle reset-prompt
-    zle redisplay
-}
-zle     -N    project-widget
-bindkey '^[;' project-widget
-# }}}
-
-# Bookmarks {{{
-fuzzygo-widget() {
-    jump $(cut -d '|' -f 2 ~/.bookmarks | fzf)
-    echo; prompt_pure_precmd; # Fix pure theme
-    zle reset-prompt
-}
-zle     -N    fuzzygo-widget
-bindkey '^[g' fuzzygo-widget
 # }}}
 
 # Automatically run ls on blank line for faster navigation {{{
@@ -161,9 +137,9 @@ if [[ -r $HOME/.zsh_custom ]]; then
     source $HOME/.zsh_custom
 fi
 
-# Fuzzy shell widget {{{
+# Fuzzy shell {{{
 fzf-install() {
-    git clone https://github.com/junegunn/fzf.git ~/bin/fzfrepo
+    git clone https://github.com/junegunn/fzf.git ~/bin/fzf
 }
 
 # CTRL-T - Paste the selected file(s) path into the command line
