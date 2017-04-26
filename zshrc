@@ -12,7 +12,7 @@ Bundle() {
 # Bundles {{{
 Bundle git
 Bundle github
-Bundle symfony2
+# Bundle symfony2
 Bundle vagrant
 Bundle composer
 Bundle extract
@@ -22,11 +22,13 @@ Bundle mafredri/zsh-async
 Bundle sindresorhus/pure
 # Bundle voronkovich/project.plugin.zsh
 Bundle /home/oleg/workspace/project.plugin.zsh --no-local-clone
+Bundle /home/oleg/workspace/phpunit.plugin.zsh --no-local-clone
+Bundle /home/oleg/workspace/symfony.plugin.zsh --no-local-clone
 Bundle voronkovich/apache2.plugin.zsh
 Bundle voronkovich/mysql.plugin.zsh
 # Bundle /home/oleg/workspace/mysql.plugin.zsh --no-local-clone
-Bundle voronkovich/gitignore.plugin.zsh
-# Bundle /home/oleg/workspace/gitignore.plugin.zsh --no-local-clone
+# Bundle voronkovich/gitignore.plugin.zsh
+Bundle /home/oleg/workspace/gitignore.plugin.zsh --no-local-clone
 Bundle voronkovich/get-jquery.plugin.zsh
 Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zsh-completions src
@@ -34,6 +36,7 @@ Bundle supercrabtree/k
 Bundle willghatch/zsh-snippets
 Bundle uvaes/fzf-marks
 Bundle unixorn/autoupdate-antigen.zshplugin
+Bundle rg3/youtube-dl
 # }}}
 
 # Tell antigen that you're done.
@@ -49,6 +52,7 @@ export PAGER=most
 export PROJECTS=~/workspace
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
 export ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS="$HOME/.gitignore:$ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS"
+export PATH="/usr/local/heroku/bin:$PATH"
 # }}}
 
 # History settings {{{
@@ -56,30 +60,31 @@ setopt hist_ignore_all_dups
 # }}}
 
 # Aliases {{{
-alias zshrc="$EDITOR ~/.zshrc"
+alias ack="ag"
+alias e="$EDITOR"
+alias ec="eclim -command"
+alias eclim-start="tmux new-session -s eclim eclimd"
+alias ecpc="eclim -command project_create -f"
+alias ecpu="eclim -command project_update -p"
+alias fzf='~/bin/fzf/fzf'
+alias gaa='git add .'
+alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
+alias j='jump'
+alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
+alias psr2='phpcs --colors -n --standard=psr2'
+alias psr2diff='phpcs --colors -n --standard=psr2 --report=diff'
+alias root='sudo -s'
+alias sfide="tmux -2 new-session -s symfony -n terminal \; new-window -n code $EDITOR \; split-window 'php app/console --shell --process-isolation' \; resize-pane -D 4 \; select-pane -U"
+alias v="vagrant"
+alias vb='virtualbox'
+alias vim="stty stop '' -ixoff ; vim"
+alias vspec=~/.vim/bundle/vim-vspec/bin/vspec
+alias yad="yandex-disk"
+alias yadpub="yandex-disk publish"
 alias zshrc-pull="echo '**** Pulling .zshrc'; git --git-dir ~/.zsh/.git --work-tree ~/.zsh pull; echo; antigen update; zshrc-reload"
 alias zshrc-push="git --git-dir ~/.zsh/.git --work-tree ~/.zsh add . && git --git-dir ~/.zsh/.git --work-tree ~/.zsh commit && git --git-dir ~/.zsh/.git --work-tree ~/.zsh push"
 alias zshrc-reload="source ~/.zshrc"
-alias vim="stty stop '' -ixoff ; vim"
-alias e="$EDITOR"
-alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
-alias sfide="tmux -2 new-session -s symfony -n terminal \; new-window -n code $EDITOR \; split-window 'php app/console --shell --process-isolation' \; resize-pane -D 4 \; select-pane -U"
-alias ec="eclim -command"
-alias ecpc="eclim -command project_create -f"
-alias ecpu="eclim -command project_update -p"
-alias eclim-start="tmux new-session -s eclim eclimd"
-alias ack="ag"
-alias yad="yandex-disk"
-alias yadpub="yandex-disk publish"
-alias v="vagrant"
-alias fzf='~/bin/fzf/fzf'
-alias gaa='git add .'
-alias root='sudo -s'
-alias j='jump'
-alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
-alias vb='virtualbox'
-alias sf='app/console'
-alias vspec=~/.vim/bundle/vim-vspec/bin/vspec
+alias zshrc="$EDITOR ~/.zshrc"
 if $(which htop &>/dev/null); then
     alias top=htop
 fi
@@ -181,38 +186,6 @@ fzf-cd-history-widget() {
 }
 zle     -N   fzf-cd-history-widget
 bindkey '\ec' fzf-cd-history-widget
-# }}}
-
-# Composer autocompletion {{{
-function _composer {
-    # Emulate BASH's command line contents variable
-    local -x COMP_LINE="$words"
-
-    # Emulate BASH's cursor position variable, setting it to the end of the current word.
-    local -x COMP_POINT
-    (( COMP_POINT = ${#${(j. .)words[1,CURRENT]}} ))
-
-    # Honour the COMPOSER_HOME variable if set
-    local composer_dir=$COMPOSER_HOME
-    if [ -z "$composer_dir" ]; then
-        composer_dir=$HOME/.composer
-    fi
-
-    local RESULT STATUS
-    local -x COMPOSER_CWD=`pwd`
-    RESULT=("${(@f)$( cd $composer_dir && composer depends _completion )}")
-    STATUS=$?;
-
-    # Bail out if PHP didn't exit cleanly
-    if [ $STATUS -ne 0 ]; then
-        echo $RESULT;
-        return $?;
-    fi;
-
-    compadd -- $RESULT
-};
-
-compdef _composer composer;
 # }}}
 
 # vim: foldmethod=marker
