@@ -20,7 +20,7 @@ Bundle npm
 Bundle bower
 Bundle mafredri/zsh-async
 Bundle sindresorhus/pure
-# Bundle voronkovich/project.plugin.zsh
+Bundle voronkovich/phpcs.plugin.zsh
 Bundle /home/oleg/workspace/project.plugin.zsh --no-local-clone
 Bundle /home/oleg/workspace/phpunit.plugin.zsh --no-local-clone
 Bundle /home/oleg/workspace/symfony.plugin.zsh --no-local-clone
@@ -71,8 +71,6 @@ alias gaa='git add .'
 alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
 alias j='jump'
 alias localhost8080='sudo iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-port 8080'
-alias psr2='phpcs --colors -n --standard=psr2'
-alias psr2diff='phpcs --colors -n --standard=psr2 --report=diff'
 alias root='sudo -s'
 alias sfide="tmux -2 new-session -s symfony -n terminal \; new-window -n code $EDITOR \; split-window 'php app/console --shell --process-isolation' \; resize-pane -D 4 \; select-pane -U"
 alias v="vagrant"
