@@ -17,6 +17,7 @@ Bundle vagrant
 Bundle composer
 Bundle extract
 Bundle npm
+Bundle yarn
 Bundle bower
 Bundle mafredri/zsh-async
 Bundle sindresorhus/pure
