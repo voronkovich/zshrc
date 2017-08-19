@@ -22,14 +22,14 @@ Bundle bower
 Bundle mafredri/zsh-async
 Bundle sindresorhus/pure
 Bundle voronkovich/phpcs.plugin.zsh
-Bundle /home/oleg/workspace/project.plugin.zsh --no-local-clone
-Bundle /home/oleg/workspace/phpunit.plugin.zsh --no-local-clone
-Bundle /home/oleg/workspace/symfony.plugin.zsh --no-local-clone
+Bundle /home/oleg/projects/project.plugin.zsh --no-local-clone
+Bundle /home/oleg/projects/phpunit.plugin.zsh --no-local-clone
+Bundle /home/oleg/projects/symfony.plugin.zsh --no-local-clone
 Bundle voronkovich/apache2.plugin.zsh
 Bundle voronkovich/mysql.plugin.zsh
-# Bundle /home/oleg/workspace/mysql.plugin.zsh --no-local-clone
+# Bundle /home/oleg/projects/mysql.plugin.zsh --no-local-clone
 # Bundle voronkovich/gitignore.plugin.zsh
-Bundle /home/oleg/workspace/gitignore.plugin.zsh --no-local-clone
+Bundle /home/oleg/projects/gitignore.plugin.zsh --no-local-clone
 Bundle voronkovich/get-jquery.plugin.zsh
 Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zsh-completions src
@@ -38,6 +38,7 @@ Bundle willghatch/zsh-snippets
 Bundle uvaes/fzf-marks
 Bundle unixorn/autoupdate-antigen.zshplugin
 Bundle rg3/youtube-dl
+Bundle shengyou/codeception-zsh-plugin
 # }}}
 
 # Tell antigen that you're done.
@@ -47,13 +48,11 @@ ZSH_THEME="pure"
 
 # Exporting variables {{{
 export LC_ALL=en_US.UTF-8
-export PATH=$PATH:~/bin:~/eclipse:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH="$PATH:${HOME}/bin:${HOME}/.composer/vendor/bin"
 export EDITOR=vim
 export PAGER=most
-export PROJECTS=~/workspace
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
 export ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS="$HOME/.gitignore:$ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS"
-export PATH="/usr/local/heroku/bin:$PATH"
 # }}}
 
 # History settings {{{
@@ -67,6 +66,8 @@ alias ec="eclim -command"
 alias eclim-start="tmux new-session -s eclim eclimd"
 alias ecpc="eclim -command project_create -f"
 alias ecpu="eclim -command project_update -p"
+alias ce="codeception"
+alias ceg="codeception generate:"
 alias fzf='~/bin/fzf/fzf'
 alias gaa='git add .'
 alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
@@ -121,6 +122,8 @@ upsearch () {
     done
 }
 # }}}
+
+compdef _codeception ce
 
 # Automatically run ls on blank line for faster navigation {{{
 auto-ls () {
