@@ -12,7 +12,6 @@ Bundle() {
 # Bundles {{{
 Bundle git
 Bundle github
-# Bundle symfony2
 Bundle vagrant
 Bundle composer
 Bundle extract
@@ -28,14 +27,11 @@ Bundle /home/oleg/projects/symfony.plugin.zsh --no-local-clone
 Bundle voronkovich/apache2.plugin.zsh
 Bundle voronkovich/mysql.plugin.zsh
 # Bundle /home/oleg/projects/mysql.plugin.zsh --no-local-clone
-# Bundle voronkovich/gitignore.plugin.zsh
-Bundle /home/oleg/projects/gitignore.plugin.zsh --no-local-clone
-Bundle voronkovich/get-jquery.plugin.zsh
+Bundle voronkovich/gitignore.plugin.zsh
+# Bundle /home/oleg/projects/gitignore.plugin.zsh --no-local-clone
 Bundle zsh-users/zsh-syntax-highlighting
 Bundle zsh-users/zsh-completions src
 Bundle supercrabtree/k
-Bundle willghatch/zsh-snippets
-Bundle uvaes/fzf-marks
 Bundle unixorn/autoupdate-antigen.zshplugin
 Bundle rg3/youtube-dl
 Bundle shengyou/codeception-zsh-plugin
@@ -62,13 +58,8 @@ setopt hist_ignore_all_dups
 # Aliases {{{
 alias ack="ag"
 alias e="$EDITOR"
-alias ec="eclim -command"
-alias eclim-start="tmux new-session -s eclim eclimd"
-alias ecpc="eclim -command project_create -f"
-alias ecpu="eclim -command project_update -p"
 alias ce="codeception"
 alias ceg="codeception generate:"
-alias fzf='~/bin/fzf/fzf'
 alias gaa='git add .'
 alias ide="tmux -2 new-session $EDITOR \; split-window \; resize-pane -D 4"
 alias j='jump'
@@ -85,6 +76,7 @@ alias zshrc-pull="echo '**** Pulling .zshrc'; git --git-dir ~/.zsh/.git --work-t
 alias zshrc-push="git --git-dir ~/.zsh/.git --work-tree ~/.zsh add . && git --git-dir ~/.zsh/.git --work-tree ~/.zsh commit && git --git-dir ~/.zsh/.git --work-tree ~/.zsh push"
 alias zshrc-reload="source ~/.zshrc"
 alias zshrc="$EDITOR ~/.zshrc"
+alias m='make'
 if $(which htop &>/dev/null); then
     alias top=htop
 fi
@@ -123,8 +115,6 @@ upsearch () {
 }
 # }}}
 
-compdef _codeception ce
-
 # Automatically run ls on blank line for faster navigation {{{
 auto-ls () {
     if [[ $#BUFFER -eq 0 ]]; then
@@ -144,50 +134,6 @@ if [[ -r $HOME/.zsh_custom ]]; then
     source $HOME/.zsh_custom
 fi
 
-# Fuzzy shell {{{
-fzf-install() {
-    git clone https://github.com/junegunn/fzf.git ~/bin/fzf
-}
-
-# CTRL-T - Paste the selected file(s) path into the command line
-fzf-file-widget() {
-    local FILES
-    local IFS=""
-    FILES=($(
-    find * -path '*/\.*' -prune \
-        -o -type f -print \
-        -o -type l -print 2> /dev/null | fzf -m))
-    unset IFS
-    FILES=$FILES:q
-    LBUFFER="${LBUFFER%% #} $FILES"
-    zle redisplay
-}
-zle     -N   fzf-file-widget
-bindkey '^T' fzf-file-widget
-
-# CTRL-Q - cd into the selected directory
-fzf-cd-widget() {
-      cd "${$(find * -path '*/\.*' -prune \
-          -o -type d -print 2> /dev/null | fzf):-.}"
-      echo; prompt_pure_precmd; # Fix pure theme
-      zle redisplay
-}
-zle     -N   fzf-cd-widget
-bindkey '^Q' fzf-cd-widget
-
-# CTRL-R - Paste the selected command from history into the command line
-fzf-history-widget() {
-      LBUFFER=$(history | fzf +s | sed "s/ *[0-9]* *//")
-      zle redisplay
-}
-zle     -N   fzf-history-widget
-bindkey '^R' fzf-history-widget
-
-fzf-cd-history-widget() {
-    cd $(dirs -pl | fzf) 
-}
-zle     -N   fzf-cd-history-widget
-bindkey '\ec' fzf-cd-history-widget
-# }}}
+autoload -Uz compinit && compinit -i
 
 # vim: foldmethod=marker
