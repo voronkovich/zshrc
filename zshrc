@@ -29,7 +29,7 @@ Bundle voronkovich/mysql.plugin.zsh
 # Bundle /home/oleg/projects/mysql.plugin.zsh --no-local-clone
 Bundle voronkovich/gitignore.plugin.zsh
 # Bundle /home/oleg/projects/gitignore.plugin.zsh --no-local-clone
-Bundle zsh-users/zsh-syntax-highlighting
+Bundle zdharma/fast-syntax-highlighting
 Bundle zsh-users/zsh-completions src
 Bundle supercrabtree/k
 Bundle unixorn/autoupdate-antigen.zshplugin
@@ -44,7 +44,7 @@ ZSH_THEME="pure"
 
 # Exporting variables {{{
 export LC_ALL=en_US.UTF-8
-export PATH="$PATH:${HOME}/bin:${HOME}/.composer/vendor/bin"
+export PATH="$PATH:${HOME}/bin:${HOME}/.composer/vendor/bin:${HOME}/.local/bin"
 export EDITOR=vim
 export PAGER=most
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
