@@ -44,7 +44,7 @@ ZSH_THEME="pure"
 
 # Exporting variables {{{
 export LC_ALL=en_US.UTF-8
-export PATH="$PATH:${HOME}/bin:${HOME}/.composer/vendor/bin:${HOME}/.local/bin"
+export PATH="$PATH:${HOME}/bin:${HOME}/.composer/vendor/bin:${HOME}/.local/bin:vendor/bin:node_modules/.bin"
 export EDITOR=vim
 export PAGER=most
 export ZSH_PLUGIN_APACHE_SITES_CUSTOM_TEMPLATES=~/.sites_templates
@@ -112,6 +112,12 @@ upsearch () {
         test -e "$directory/$1" && echo "$directory/$1" && return
         directory="$directory/.."
     done
+}
+fix-autocompletion() {
+    compaudit | xargs -I % chmod g-w "%";
+    compaudit | xargs -I % chown $USER "%";
+    rm ~/.zcompdump*;
+    compinit;
 }
 # }}}
 
