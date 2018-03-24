@@ -1,40 +1,41 @@
 # Bootstrap {{{
-source ~/.zsh/antigen/antigen.zsh
+source ~/.zplug/init.zsh
 
-antigen use oh-my-zsh
-
-Bundle() { antigen bundle $* }
+omz() { zplug "plugins/$1", from:oh-my-zsh; }
 # }}}
 
 # Bundles {{{
-Bundle bower
-Bundle composer
-Bundle docker
-Bundle extract
-Bundle git
-Bundle github
-Bundle npm
-Bundle vagrant
-Bundle yarn
-Bundle mafredri/zsh-async
-Bundle rg3/youtube-dl
-Bundle shengyou/codeception-zsh-plugin
-Bundle sindresorhus/pure
-Bundle supercrabtree/k
-Bundle unixorn/autoupdate-antigen.zshplugin
-Bundle voronkovich/gitignore.plugin.zsh
-Bundle voronkovich/mysql.plugin.zsh
-Bundle voronkovich/phpcs.plugin.zsh
-Bundle voronkovich/phpunit.plugin.zsh
-Bundle voronkovich/project.plugin.zsh
-Bundle voronkovich/symfony.plugin.zsh
-Bundle zdharma/fast-syntax-highlighting
-Bundle zsh-users/zsh-completions src
+omz bower
+omz composer
+omz docker
+omz extract
+omz git
+omz github
+omz npm
+omz vagrant
+omz yarn
+zplug "mafredri/zsh-async", defer:0
+zplug "rg3/youtube-dl"
+zplug "sindresorhus/pure", as:theme, use:pure.zsh
+zplug "supercrabtree/k"
+zplug "voronkovich/gitignore.plugin.zsh"
+zplug 'voronkovich/mysql.plugin.zsh'
+zplug "voronkovich/phpcs.plugin.zsh"
+zplug "voronkovich/phpunit.plugin.zsh"
+zplug "voronkovich/project.plugin.zsh"
+zplug "voronkovich/symfony.plugin.zsh"
+zplug "zdharma/fast-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions", use:src
 # }}}
 
-antigen apply
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-ZSH_THEME="pure"
+zplug load
 
 # Exporting variables {{{
 export LC_ALL=en_US.UTF-8
@@ -111,8 +112,9 @@ auto-ls () {
     if [[ $#BUFFER -eq 0 ]]; then
         echo
         k
+        # zle redisplay
+        zle reset-prompt
         # prompt_pure_precmd; # Fix pure theme
-        zle redisplay
     else
         zle .$WIDGET
     fi
