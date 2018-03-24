@@ -106,6 +106,9 @@ fix-autocompletion() {
     rm ~/.zcompdump*;
     compinit;
 }
+f() {
+    find -iname "*$1*" -print -o -name '.git' -prune | grep -i --color "$1"
+}
 # }}}
 
 # Automatically run ls on blank line for faster navigation {{{
