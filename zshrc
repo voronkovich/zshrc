@@ -25,6 +25,7 @@ zplug "voronkovich/phpunit.plugin.zsh"
 zplug "voronkovich/project.plugin.zsh"
 zplug "voronkovich/symfony.plugin.zsh"
 zplug "zdharma/fast-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions", use:src
 # }}}
 
@@ -109,14 +110,11 @@ fix-autocompletion() {
 
 # Automatically run ls on blank line for faster navigation {{{
 auto-ls () {
-    if [[ $#BUFFER -eq 0 ]]; then
-        echo
+    if [[ -z $BUFFER ]]; then
+        zle -I
         k
-        # zle redisplay
-        zle reset-prompt
-        # prompt_pure_precmd; # Fix pure theme
     else
-        zle .$WIDGET
+        zle ".$WIDGET"
     fi
 }
 zle -N accept-line auto-ls
